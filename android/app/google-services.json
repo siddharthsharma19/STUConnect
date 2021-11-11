@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "78743299220",
+    "project_id": "ritstudent-66a40",
+    "storage_bucket": "ritstudent-66a40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78743299220:android:c2c448c693092592078081",
+        "android_client_info": {
+          "package_name": "com.example.ritstudent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78743299220-epj4m0p6knjqp4gu99h99e55ohpume16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv0dr0M29TY4ftIH09e_KBnVJsDX8OlO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78743299220-epj4m0p6knjqp4gu99h99e55ohpume16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
