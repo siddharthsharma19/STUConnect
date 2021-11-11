@@ -1,4 +1,4 @@
-# ritstudent
+# flutterapp
 
 A new Flutter project.
 
