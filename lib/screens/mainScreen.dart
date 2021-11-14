@@ -4,6 +4,7 @@ import 'package:ritstudent/screens/Notes/notes.dart';
 import 'package:ritstudent/screens/Placement/placement.dart';
 import 'package:ritstudent/screens/Result/resultscreen.dart';
 import 'package:ritstudent/screens/signin/signin.dart';
+import 'package:ritstudent/screens/sis/sisload.dart';
 import 'package:ritstudent/screens/sis/sisscreen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -12,29 +13,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  // final _auth = FirebaseAuth.instance;
-  // void initState() {
-  //   super.initState();
-  //   getCurrentUser();
-  // }
-
-  // void getCurrentUser() async {
-  //   try {
-  //     final user = _auth.currentUser;
-  //     if (user != null) {
-  //       loggedinUser = user;
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
-    SisScreen(),
+    SisLoad(),
     ResultScreen(),
     NotesScreen(),
-    PlacementScreen()
+    PlacementScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -69,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
               children: [
                 Container(
                   child: UserAccountsDrawerHeader(
-                    accountEmail: Text(usncontroller.text,
+                    accountEmail: Text("users.username",
                         style: Theme.of(context).textTheme.bodyText1),
                     accountName: Text(
                       usn,
@@ -160,9 +144,3 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-
-// Future<String> getname() async {
-//   return await AuthService()
-//       .getinfo(token)
-//       .then((value) => value.data['username']);
-// }

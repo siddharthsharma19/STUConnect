@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 class AuthService {
   Dio dio = new Dio();
