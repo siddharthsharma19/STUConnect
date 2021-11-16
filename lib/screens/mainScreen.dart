@@ -10,6 +10,7 @@ import 'package:ritstudent/screens/signin/signin.dart';
 import 'package:ritstudent/screens/sis/sisload.dart';
 import 'package:ritstudent/screens/sis/sisscreen.dart';
 import 'package:ritstudent/screens/subject/subjectmodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  late SharedPreferences sharedPreferences;
   int _selectedIndex = 0;
   late Future<SubjectModel> futuresubject;
   Future<SubjectModel> fetchData(token) async {
@@ -36,7 +38,17 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    loginStatus();
     futuresubject = fetchData(token);
+  }
+
+  loginStatus() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString("isloggedin") == null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (BuildContext context) => SigninScreen()),
+          (Route<dynamic> route) => false);
+    }
   }
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -138,8 +150,17 @@ class _MainScreenState extends State<MainScreen> {
                                             child: Text('No'),
                                           ),
                                           TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                context, true), // passing true
+                                            onPressed: () {
+                                              sharedPreferences.clear();
+                                              Navigator.of(context)
+                                                  .pushAndRemoveUntil(
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              SigninScreen()),
+                                                      (Route<dynamic> route) =>
+                                                          false);
+                                            }, // passing true
                                             child: Text('Yes'),
                                           ),
                                         ],

@@ -5,6 +5,7 @@ import 'package:ritstudent/constants.dart';
 import 'package:ritstudent/screens/mainScreen.dart';
 import 'package:ritstudent/screens/signin/authservice.dart';
 import 'package:ritstudent/screens/sis/sisload.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final usncontroller = TextEditingController();
 final passwordcontroller = TextEditingController();
@@ -24,21 +25,21 @@ class _SigninScreenState extends State<SigninScreen> {
   String date = DateTime.now().toString();
   bool isLoading = false;
 
-  // @override
-  // void initState() {
-  //   passwordcontroller.addListener(_passwordcontrollerlistener);
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    passwordcontroller.addListener(_passwordcontrollerlistener);
+    super.initState();
+  }
 
-  // void _passwordcontrollerlistener() {
-  //   password = passwordcontroller.text;
-  // }
+  void _passwordcontrollerlistener() {
+    password = passwordcontroller.text;
+  }
 
-  // @override
-  // void dispose() {
-  //   passwordcontroller.removeListener(_passwordcontrollerlistener);
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    passwordcontroller.removeListener(_passwordcontrollerlistener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -155,36 +156,6 @@ class _SigninScreenState extends State<SigninScreen> {
                           },
                           child: Text('Sign In'))
                       : Center(child: CircularProgressIndicator())
-                  //till here
-
-                  //old way
-                  // ElevatedButton(
-
-                  //   child: isLoading
-                  //       ? CircularProgressIndicator(color: Colors.white)
-                  //       : Text('Sign In'),
-                  //   onPressed: () async{
-                  //     // print(usn);
-                  //     // print(password);
-                  //     setState(() => isLoading = true);
-                  //     try {
-                  //       AuthService().login(usn, password).then((val) {
-                  //         if (val.data['success']) {
-                  //           token = val.data['token'];
-                  //           Navigator.pushReplacement(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (context) => MainScreen()));
-                  //           print('Authenticated');
-                  //         }
-                  //       });
-                  //     } on DioError catch (e) {
-                  //       print(e.response);
-                  //     }
-                  //     setState(() => isLoading = false);
-                  //   },
-                  // )
-                  //till here
                 ],
               ),
             )),
@@ -194,12 +165,16 @@ class _SigninScreenState extends State<SigninScreen> {
 
 //New stuff
   Future login() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
       AuthService().login(usn, password).then((val) {
         if (val.data['success']) {
           token = val.data['token'];
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => MainScreen()));
+          sharedPreferences.setString("isloggedin", token);
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (BuildContext context) => MainScreen()),
+              (Route<dynamic> route) => false);
           print('Authenticated');
         }
       });
