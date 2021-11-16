@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:ritstudent/constants.dart';
 import 'package:ritstudent/screens/mainScreen.dart';
 import 'package:ritstudent/screens/signin/authservice.dart';
-import 'package:ritstudent/screens/sis/sisload.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 final usncontroller = TextEditingController();
 final passwordcontroller = TextEditingController();
@@ -165,12 +163,10 @@ class _SigninScreenState extends State<SigninScreen> {
 
 //New stuff
   Future login() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     try {
       AuthService().login(usn, password).then((val) {
         if (val.data['success']) {
           token = val.data['token'];
-          sharedPreferences.setString("isloggedin", token);
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()),

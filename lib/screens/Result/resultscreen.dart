@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:ritstudent/screens/Result/cardlayout.dart';
-import 'package:ritstudent/screens/Result/resultinfo.dart';
 import 'package:ritstudent/screens/signin/signin.dart';
 import 'package:ritstudent/screens/subject/subjectmodel.dart';
 

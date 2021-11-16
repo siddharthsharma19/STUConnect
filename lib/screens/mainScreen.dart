@@ -8,9 +8,7 @@ import 'package:ritstudent/screens/Placement/placement.dart';
 import 'package:ritstudent/screens/Result/resultscreen.dart';
 import 'package:ritstudent/screens/signin/signin.dart';
 import 'package:ritstudent/screens/sis/sisload.dart';
-import 'package:ritstudent/screens/sis/sisscreen.dart';
 import 'package:ritstudent/screens/subject/subjectmodel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -18,7 +16,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late SharedPreferences sharedPreferences;
   int _selectedIndex = 0;
   late Future<SubjectModel> futuresubject;
   Future<SubjectModel> fetchData(token) async {
@@ -38,17 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    loginStatus();
     futuresubject = fetchData(token);
-  }
-
-  loginStatus() async {
-    sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getString("isloggedin") == null) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => SigninScreen()),
-          (Route<dynamic> route) => false);
-    }
   }
 
   static List<Widget> _widgetOptions = <Widget>[
@@ -97,11 +84,38 @@ class _MainScreenState extends State<MainScreen> {
                               icon: Icon(Icons.notifications)),
                           IconButton(
                               onPressed: () async {
-                                // _auth.signOut();
-                                // Navigator.pushReplacement(
-                                //     context,
+                                showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return AlertDialog(
+                                        title: Text('Wanna Exit?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                context, true), // passing false
+                                            child: Text('No'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .pushAndRemoveUntil(
+                                                      MaterialPageRoute(
+                                                          builder: (BuildContext
+                                                                  context) =>
+                                                              SigninScreen()),
+                                                      (Route<dynamic> route) =>
+                                                          false);
+                                            }, // passing true
+                                            child: Text('Yes'),
+                                          ),
+                                        ],
+                                      );
+                                    });
+                                // Navigator.of(context).pushAndRemoveUntil(
                                 //     MaterialPageRoute(
-                                //         builder: (context) => SigninScreen()));
+                                //         builder: (BuildContext context) =>
+                                //             SigninScreen()),
+                                //     (Route<dynamic> route) => false);
                               },
                               icon: Icon(Icons.logout_rounded))
                         ],
@@ -151,7 +165,6 @@ class _MainScreenState extends State<MainScreen> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              sharedPreferences.clear();
                                               Navigator.of(context)
                                                   .pushAndRemoveUntil(
                                                       MaterialPageRoute(
