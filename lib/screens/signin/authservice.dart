@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
   Dio dio = new Dio();
-  Future login(usn, password) async {
+  Future login(usn, password, context) async {
     try {
       return await dio.post('https://msritstudent.herokuapp.com/authenticate',
           data: {
@@ -13,6 +14,7 @@ class AuthService {
           options: Options(contentType: Headers.formUrlEncodedContentType));
     } on DioError catch (e) {
       print(e.response); //toast or a snackbar
+      return e;
     }
   }
 }

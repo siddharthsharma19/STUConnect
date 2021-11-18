@@ -148,9 +148,6 @@ class _SigninScreenState extends State<SigninScreen> {
                               isLoading = true;
                             });
                             await login();
-                            setState(() {
-                              isLoading = true;
-                            });
                           },
                           child: Text('Sign In'))
                       : Center(child: CircularProgressIndicator())
@@ -163,20 +160,28 @@ class _SigninScreenState extends State<SigninScreen> {
 
 //New stuff
   Future login() async {
-    try {
-      AuthService().login(usn, password).then((val) {
+    AuthService().login(usn, password, context).then((val) {
+      try {
         if (val.data['success']) {
           token = val.data['token'];
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
                   builder: (BuildContext context) => MainScreen()),
               (Route<dynamic> route) => false);
+          setState(() {
+            isLoading = true;
+          });
           print('Authenticated');
         }
-      });
-    } on DioError catch (e) {
-      print(e.response);
-    }
+      } catch (val) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Wrong Credentials')));
+        setState(() {
+          isLoading = false;
+        });
+        print('Fuck this error');
+      }
+    });
   }
 //till here
 
