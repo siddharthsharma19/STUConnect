@@ -67,7 +67,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   Padding(
                     padding: EdgeInsets.all(15),
                     child: TextField(
-                      keyboardType: TextInputType.streetAddress,
+                      textCapitalization: TextCapitalization.characters,
                       textInputAction: TextInputAction.next,
                       controller: usncontroller,
                       onChanged: (value) {
@@ -86,6 +86,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   Padding(
                     padding: EdgeInsets.all(15),
                     child: TextField(
+                      textInputAction: TextInputAction.next,
                       controller: passwordcontroller,
                       obscureText: _isHidden,
                       onChanged: (value) {
@@ -174,12 +175,19 @@ class _SigninScreenState extends State<SigninScreen> {
           print('Authenticated');
         }
       } catch (val) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Wrong Credentials')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Wrong Credentials'),
+          action: SnackBarAction(
+            label: 'Retry',
+            onPressed: () {
+              usncontroller.clear();
+              passwordcontroller.clear();
+            },
+          ),
+        ));
         setState(() {
           isLoading = false;
         });
-        print('Fuck this error');
       }
     });
   }

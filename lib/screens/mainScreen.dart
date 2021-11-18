@@ -134,7 +134,8 @@ class _MainScreenState extends State<MainScreen> {
                                 ),
                                 currentAccountPicture: CircleAvatar(
                                   radius: 10,
-                                  child: Text(usn),
+                                  child: Image.network(
+                                      'https://source.unsplash.com/random'),
                                 ),
                               ),
                             ),
