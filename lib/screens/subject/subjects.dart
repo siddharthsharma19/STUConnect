@@ -1,5 +1,5 @@
-import 'package:ritstudent/screens/signin/signin.dart';
-import 'package:ritstudent/screens/sis/sisdata.dart';
+import 'package:STUConnect/screens/signin/signin.dart';
+import 'package:STUConnect/screens/sis/sisdata.dart';
 
 class SubjectInfo {
   late int position;

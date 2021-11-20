@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:ritstudent/screens/Event/event.dart';
-import 'package:ritstudent/screens/Notes/notes.dart';
-import 'package:ritstudent/screens/Placement/placement.dart';
-import 'package:ritstudent/screens/Result/resultscreen.dart';
-import 'package:ritstudent/screens/signin/signin.dart';
-import 'package:ritstudent/screens/sis/sisload.dart';
-import 'package:ritstudent/screens/subject/subjectmodel.dart';
+import 'package:STUConnect/screens/Event/event.dart';
+import 'package:STUConnect/screens/Notes/notes.dart';
+import 'package:STUConnect/screens/Placement/placement.dart';
+import 'package:STUConnect/screens/Result/resultscreen.dart';
+import 'package:STUConnect/screens/signin/signin.dart';
+import 'package:STUConnect/screens/sis/sisload.dart';
+import 'package:STUConnect/screens/subject/subjectmodel.dart';
 
 class MainScreen extends StatefulWidget {
   @override

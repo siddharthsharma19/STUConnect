@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:ritstudent/screens/signin/signin.dart';
-import 'package:ritstudent/screens/subject/subjectmodel.dart';
+import 'package:STUConnect/screens/signin/signin.dart';
+import 'package:STUConnect/screens/subject/subjectmodel.dart';
 
 class Result extends StatefulWidget {
   Result({Key? key}) : super(key: key);

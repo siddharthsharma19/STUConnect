@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ritstudent/screens/Placement/blog.dart';
-import 'package:ritstudent/screens/Placement/newblog.dart';
+import 'package:STUConnect/screens/Placement/blog.dart';
+import 'package:STUConnect/screens/Placement/newblog.dart';
 
 class PlacementScreen extends StatefulWidget {
   @override
@@ -41,86 +41,92 @@ class _PlacementScreenState extends State<PlacementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) => Container(
-          child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      child: Text(username[index][0]),
+      body: RefreshIndicator(
+          onRefresh: _pullRefresh,
+          child: ListView.separated(
+            itemCount: 5,
+            itemBuilder: (BuildContext context, int index) => Container(
+              child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          child: Text(username[index][0]),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Column(
+                              children: [
+                                Text(
+                                  username[index],
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(time[index]),
+                              ],
+                            ))
+                      ],
                     ),
-                    Padding(
-                        padding: EdgeInsets.only(left: 15),
-                        child: Column(
-                          children: [
-                            Text(
-                              username[index],
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(time[index]),
-                          ],
-                        ))
-                  ],
-                ),
-                Divider(),
-                Text(blog[index]),
-                // ReadMore(
-                //   'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
-                //   trimLines: 2,
-                //   colorClickableText: Colors.pink,
-                //   trimMode: TrimMode.Line,
-                //   trimCollapsedText: '...more',
-                //   trimExpandedText: ' less',
-                // ),
-                Padding(padding: EdgeInsets.only(top: 10)),
-                Image.network(url[index]),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('${likes[index]} likes'),
-                    Text('${comments[index]} comments')
-                  ],
-                ),
-                Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                        iconSize: 18,
-                        onPressed: () {
-                          setState(() {
-                            isLiked = !isLiked;
-                            if (isLiked) {
-                              likes[index] += 1;
-                            } else {
-                              likes[index] -= 1;
-                            }
-                          });
-                        },
-                        color: isLiked ? Colors.blue : Colors.grey,
-                        icon: Icon(Icons.thumb_up_rounded)),
-                    IconButton(
-                        iconSize: 15,
-                        onPressed: () {},
-                        icon: Icon(Icons.add_comment_rounded)),
-                    IconButton(
-                      iconSize: 15,
-                      onPressed: () {},
-                      icon: Icon(Icons.share),
+                    Divider(),
+                    Text(blog[index]),
+                    // ReadMore(
+                    //   'Flutter is Google’s mobile UI open source framework to build high-quality native (super fast) interfaces for iOS and Android apps with the unified codebase.',
+                    //   trimLines: 2,
+                    //   colorClickableText: Colors.pink,
+                    //   trimMode: TrimMode.Line,
+                    //   trimCollapsedText: '...more',
+                    //   trimExpandedText: ' less',
+                    // ),
+                    Padding(padding: EdgeInsets.only(top: 10)),
+                    SizedBox(
+                      height: 400,
+                      child: Image.network(url[index]),
                     ),
-                  ],
-                ),
-                Divider(
-                  thickness: 2,
-                )
-              ])),
-        ),
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-      ),
+                    Divider(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('${likes[index]} likes'),
+                        Text('${comments[index]} comments')
+                      ],
+                    ),
+                    Divider(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        IconButton(
+                            iconSize: 18,
+                            onPressed: () {
+                              setState(() {
+                                isLiked = !isLiked;
+                                if (isLiked) {
+                                  likes[index] += 1;
+                                } else {
+                                  likes[index] -= 1;
+                                }
+                              });
+                            },
+                            color: isLiked ? Colors.blue : Colors.grey,
+                            icon: Icon(Icons.thumb_up_rounded)),
+                        IconButton(
+                            iconSize: 15,
+                            onPressed: () {},
+                            icon: Icon(Icons.add_comment_rounded)),
+                        IconButton(
+                          iconSize: 15,
+                          onPressed: () {},
+                          icon: Icon(Icons.share),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 2,
+                    )
+                  ])),
+            ),
+            separatorBuilder: (BuildContext context, int index) =>
+                const Divider(),
+          )),
       floatingActionButton: FloatingActionButton.small(
         onPressed: () {
           print("Entering new blog");
@@ -132,5 +138,9 @@ class _PlacementScreenState extends State<PlacementScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
     );
+  }
+
+  Future<void> _pullRefresh() async {
+    setState(() {});
   }
 }

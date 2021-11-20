@@ -1,4 +1,4 @@
-package com.example.ritstudent
+package com.example.STUConnect
 
 import io.flutter.embedding.android.FlutterActivity
 

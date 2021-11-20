@@ -1,6 +1,6 @@
 {
-    "name": "ritstudent",
-    "short_name": "ritstudent",
+    "name": "STUConnect",
+    "short_name": "STUConnect",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

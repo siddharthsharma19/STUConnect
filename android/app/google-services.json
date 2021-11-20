@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "78743299220",
-    "project_id": "ritstudent-66a40",
-    "storage_bucket": "ritstudent-66a40.appspot.com"
+    "project_id": "STUConnect-66a40",
+    "storage_bucket": "STUConnect-66a40.appspot.com"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:78743299220:android:c2c448c693092592078081",
         "android_client_info": {
-          "package_name": "com.example.ritstudent"
+          "package_name": "com.example.STUConnect"
         }
       },
       "oauth_client": [

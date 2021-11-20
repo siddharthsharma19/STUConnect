@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 import 'package:http/http.dart';
-import 'package:ritstudent/constants.dart';
-import 'package:ritstudent/screens/signin/signin.dart';
-import 'package:ritstudent/screens/subject/subjectmodel.dart';
+import 'package:STUConnect/constants.dart';
+import 'package:STUConnect/screens/signin/signin.dart';
+import 'package:STUConnect/screens/subject/subjectmodel.dart';
 
 class SisLoad extends StatefulWidget {
   @override

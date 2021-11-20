@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ritstudent/screens/Event/event.dart';
-import 'package:ritstudent/screens/Placement/placement.dart';
+import 'package:STUConnect/screens/Event/event.dart';
+import 'package:STUConnect/screens/Placement/placement.dart';
 
 class NewBlog extends StatelessWidget {
   late final String blogdata;

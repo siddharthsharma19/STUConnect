@@ -1,6 +1,6 @@
-import 'package:ritstudent/constants.dart';
+import 'package:STUConnect/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:ritstudent/screens/signin/signin.dart';
+import 'package:STUConnect/screens/signin/signin.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -18,9 +18,10 @@ class WelcomeScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
               child: Image.asset(
-                MediaQuery.of(context).platformBrightness == Brightness.light
-                    ? "assets/images/logo.png"
-                    : "assets/images/logo1.png",
+                "assets/images/logo.jpg",
+                // MediaQuery.of(context).platformBrightness == Brightness.light
+                //     ? "assets/images/logo.png"
+                //     : "assets/images/logo1.png",
                 height: 146,
               ),
             ),
@@ -28,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
               flex: 5,
             ),
             Text(
-              "Welcome to RITStudent",
+              "Welcome to STUConnect",
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme

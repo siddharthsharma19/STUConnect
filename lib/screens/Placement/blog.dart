@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ritstudent/screens/Placement/readmore.dart';
+import 'package:STUConnect/screens/Placement/readmore.dart';
 
 class Blog extends StatefulWidget {
   @override

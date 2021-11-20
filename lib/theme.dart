@@ -1,4 +1,4 @@
-import 'package:ritstudent/constants.dart';
+import 'package:STUConnect/constants.dart';
 import 'package:flutter/material.dart';
 
 // This is our  main focus

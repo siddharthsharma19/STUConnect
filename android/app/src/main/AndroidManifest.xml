@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ritstudent">
+    package="com.example.STUConnect">
    <application
-        android:label="ritstudent"
+        android:label="STUConnect"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

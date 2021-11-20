@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ritstudent/constants.dart';
+import 'package:STUConnect/constants.dart';
 
 class NotesScreen extends StatefulWidget {
   @override

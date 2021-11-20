@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ritstudent/constants.dart';
-import 'package:ritstudent/screens/mainScreen.dart';
-import 'package:ritstudent/screens/signin/authservice.dart';
+import 'package:STUConnect/constants.dart';
+import 'package:STUConnect/screens/mainScreen.dart';
+import 'package:STUConnect/screens/signin/authservice.dart';
 
 final usncontroller = TextEditingController();
 final passwordcontroller = TextEditingController();
@@ -54,10 +54,11 @@ class _SigninScreenState extends State<SigninScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                     child: Image.asset(
-                      MediaQuery.of(context).platformBrightness ==
-                              Brightness.light
-                          ? "assets/images/logo.png"
-                          : "assets/images/logo1.png",
+                      "assets/images/logo.jpg",
+                      // MediaQuery.of(context).platformBrightness ==
+                      //         Brightness.light
+                      //     ? "assets/images/logo.png"
+                      //     : "assets/images/logo1.png",
                       height: 146,
                     ),
                   ),
@@ -163,6 +164,7 @@ class _SigninScreenState extends State<SigninScreen> {
   Future login() async {
     AuthService().login(usn, password, context).then((val) {
       try {
+        print(password);
         if (val.data['success']) {
           token = val.data['token'];
           Navigator.of(context).pushAndRemoveUntil(

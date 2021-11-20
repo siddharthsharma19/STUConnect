@@ -4,6 +4,6 @@ class SisData {
   Dio dio = new Dio();
   Future getinfo(token) async {
     dio.options.headers['Authorization'] = 'Bearer $token';
-    return await dio.get('https://msritstudent.herokuapp.com/getinfo');
+    return await dio.get('https://msSTUConnect.herokuapp.com/getinfo');
   }
 }
