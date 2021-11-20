@@ -31,6 +31,7 @@ class _MainScreenState extends State<MainScreen> {
     return SubjectModel.fromJson(json.decode(response.body));
   }
 
+  late String name;
   @override
   void initState() {
     // TODO: implement initState
@@ -67,6 +68,7 @@ class _MainScreenState extends State<MainScreen> {
                 );
               } else {
                 print(users!.username);
+                name = users.username;
                 return Scaffold(
                   body: SafeArea(
                     child: Scaffold(
@@ -213,7 +215,7 @@ class _MainScreenState extends State<MainScreen> {
                               label: 'Notes'),
                           BottomNavigationBarItem(
                               icon: Icon(Icons.next_plan_outlined),
-                              label: 'Placement'),
+                              label: 'Posts'),
                         ],
                         elevation: 10,
                         type: BottomNavigationBarType.fixed,
